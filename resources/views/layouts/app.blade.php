@@ -70,10 +70,8 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+            <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
             @yield('content')
-        </main>
     </div>
 </body>
 </html>
