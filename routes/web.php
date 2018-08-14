@@ -17,10 +17,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//CRUD
-Route::get('/admin/products', 'ProductController@index');//Listado
-Route::get('/admin/products/create', 'ProductController@create');//Crear formulario
-Route::post('/admin/products', 'ProductController@store');//Guardar los datos que escribe en el formulario
-Route::get('/admin/products/{id}/edit', 'ProductController@edit');//formulario edición
-Route::post('/admin/products/{id}/edit', 'ProductController@update'); //actualizar
-Route::delete('/admin/products/{id}', 'ProductController@destroy'); //eliminar
+/*aplicando un middleware en un grupo de rutas*/
+// 'auth' se agrego para que ejecute el middleware de autenticación y luego ejecuta el middleware para preguntar si es administrador o usuario
+Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    //CRUD
+    Route::get('/products', 'ProductController@index');//Listado
+    Route::get('/products/create', 'ProductController@create');//Crear formulario
+    Route::post('/products', 'ProductController@store');//Guardar los datos que escribe en el formulario
+    Route::get('/products/{id}/edit', 'ProductController@edit');//formulario edición
+    Route::post('/products/{id}/edit', 'ProductController@update'); //actualizar
+    Route::delete('/products/{id}', 'ProductController@destroy'); //eliminar
+});
+
+

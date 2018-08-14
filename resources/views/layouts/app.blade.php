@@ -47,6 +47,9 @@
                                     </a>
                             
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if (auth()->user()->admin)
+                                        <a class="dropdown-item" href="{{ url('/admin/products') }}">Gestionar productos</a>
+                                        @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
@@ -82,6 +85,7 @@
             {{-- contenido del login --}}
             @yield('content')
 
+            
 
             <!--   Core JS Files   -->
             <script src="{{ asset('js/core/jquery.min.js') }}" type="text/javascript"></script>
