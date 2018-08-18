@@ -24,10 +24,10 @@
               <table class="table">
                   <thead>
                       <tr>
-                          <th class="text-center">#</th>
-                          <th>Nombre</th>
-                          <th class="col-md-4">Descripción</th>
-                          <th>Categoría</th>
+                          <th class="text-center"></th>
+                          <th class="text-center">Nombre</th>
+                          <th class="col-md-5 text-center">Descripción</th>
+                          <th class="text-center">Categoría</th>
                           <th class="text-right">Precio</th>
                           <th class="text-right">Opciones</th>
                       </tr>
@@ -46,11 +46,14 @@
                               <form method="POST" action="{{ url('/admin/products/'.$product->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="button" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs">
-                                  <i class="fa fa-user"></i>
-                                </button>
-                                <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" type="button" rel="tooltip" title="Editar producto" class="btn btn-success btn-simple btn-xs">
+                                <a href="#" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs">
+                                  <i class="fa fa-info"></i>
+                                </a>
+                                <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar producto" class="btn btn-warning btn-simple btn-xs">
                                     <i class="fa fa-edit"></i>
+                                </a>
+                                <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del producto" class="btn btn-info btn-simple btn-xs">
+                                  <i class="fa fa-image"></i>
                                 </a>
                                 <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
                                   <i class="fa fa-times"></i>
@@ -74,4 +77,3 @@
 //incluir sub-vista footer
 @include('includes.footer')
 @endsection
-

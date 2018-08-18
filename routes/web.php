@@ -1,5 +1,7 @@
 <?php
 
+//use Symfony\Component\Routing\Annotation\Route;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,10 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/products/{id}/edit', 'ProductController@edit');//formulario edición
     Route::post('/products/{id}/edit', 'ProductController@update'); //actualizar
     Route::delete('/products/{id}', 'ProductController@destroy'); //eliminar
+
+    Route::get('/products/{id}/images', 'ImageController@index');
+    Route::post('/products/{id}/images', 'ImageController@store'); //guardar imagenes
+    Route::delete('/products/{id}/images', 'ImageController@destroy'); //eliminar imagenes
 });
 
 
