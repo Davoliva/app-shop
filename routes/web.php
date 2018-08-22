@@ -18,10 +18,14 @@ Route::get('/', 'TestController@welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/products/{id}', 'ProductController@show');
+
+Route::post('/cart', 'CartDetailController@store');
+
 
 /*aplicando un middleware en un grupo de rutas*/
 // 'auth' se agrego para que ejecute el middleware de autenticación y luego ejecuta el middleware para preguntar si es administrador o usuario
-Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function () {
     //CRUD
     Route::get('/products', 'ProductController@index');//Listado
     Route::get('/products/create', 'ProductController@create');//Crear formulario
