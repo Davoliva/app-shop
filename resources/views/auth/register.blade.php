@@ -8,7 +8,18 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-            <form class="form" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+            
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div> 
+            @endif
+
+            <form class="form-group" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                 @csrf
 
               <div class="card-header card-header-primary text-center">
@@ -34,7 +45,16 @@
                         </span>
                     </div>
                     <input type="text" class="form-control" placeholder="Nombre" 
-                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name'), $name }}" required autofocus>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                     <i class="material-icons">fingerprint</i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Nombre de usuario" 
+                  class="form-control" name="username" value="{{ old('username') }}" required>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -42,8 +62,26 @@
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <input id="email" type="email" placeholder="Email..." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
-                  name="email" value="{{ old('email') }}" required autofocus>
+                  <input id="email" type="email" placeholder="Correo electronico" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
+                  name="email" value="{{ old('email'), $email }}">
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">phone</i>
+                    </span>
+                  </div>
+                  <input id="phone" type="phone" placeholder="Teléfono" class="form-control" 
+                  name="phone" value="{{ old('phone')}}" required>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">class</i>
+                    </span>
+                  </div>
+                  <input id="address" type="text" placeholder="Dirección" class="form-control" 
+                  name="address" value="{{ old('address')}}" required>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -63,7 +101,7 @@
                 </div>
             
               </div>
-              <div class="footer text-center">
+              <div class="input-group justify-content-center">
                 <button href="#" type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Confirmar registro</button>
               </div>
             </form>

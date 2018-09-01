@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Producto seleccionado')
+@section('title', 'Categoría seleccionada')
 
 @section('body-class', 'profile-page sidebar-collapse')
 
@@ -15,11 +15,11 @@
               <div class="col-md-6 ml-auto mr-auto">
                 <div class="profile">
                   <div class="avatar">
-                    <img src="{{ $product->featured_image_url }}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                    <img src="{{ $category->featured_image_url }}" alt="Imagen 
+                    representativa de la categoría {{ $category->name }}" class="img-raised rounded-circle img-fluid">
                   </div>
                   <div class="name">
-                    <h3 class="title">{{ $product->name }}</h3>
-                    <h6>{{ $product->category->name }}</h6>
+                    <h3 class="title">{{ $category->name }}</h3>
                   </div>
                   
                   {{--  Notificación  --}}
@@ -33,40 +33,35 @@
               </div>
             </div>
             <div class="description text-center">
-              <p>{{ $product->long_description }} </p>
+              <p>{{ $category->description }} </p>
             </div>
 
-            <div class="text-center">
-                <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
-                        <i class="material-icons">add</i> Añadir al carrito de compras
-                </button>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 ml-auto mr-auto">
-                <div class="profile-tabs">
-                    <div class="nav-align-center">
-
-                        <div class="tab-content tab-space">
-                            <div class="tab-pane active text-center gallery" id="studio">
-                                <div class="row">
-                                <div class="col-md-6 ml-auto">
-                                    @foreach ($imagesLeft as $image)
-                                        <img src="{{ $image->url }}" class="img-rounded" alt="">
-                                    @endforeach
-                                </div>
-                                <div class="col-md-6 mr-auto">
-                                    @foreach ($imagesRight as $image)
-                                        <img src="{{ $image->url }}" class="img-rounded" alt="">
-                                    @endforeach
-                                </div>
-                                </div>
-                            </div>
+            <div class="team text-center">
+                <div class="row">
+        
+                    @foreach ($products as $product)
+                    <div class="col-md-4">
+                    <div class="team-player">
+                        <div class="card card-plain">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <img src="{{ $product->featured_image_url }}" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                         </div>
-
+                        <h4 class="card-title">
+                            <a href="{{ url('/products/'.$product->id)}}">{{$product->name}}</a>
+                        </h4>
+                        <div class="card-body">
+                            <p class="card-description">{{$product->description}} </p>
+                        </div>
+                        
+                        </div>
                     </div>
+                    </div>
+                    @endforeach
+        
                 </div>
-              </div>
+                <div class="d-flex justify-content-center">
+                    {{ $products->links() }}
+                </div>
             </div>
           </div>
         </div>

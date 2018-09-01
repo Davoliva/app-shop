@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Listado de productos')
+@section('title', 'Listado de categorias')
 
 @section('body-class', 'profile-page sidebar-collapse')
 
@@ -13,47 +13,42 @@
       <div class="section text-center">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
-            <h2 class="title">listado de productos</h2>
+            <h2 class="title">listado de categorías</h2>
           </div>
         </div>
         <div class="features">
           <div class="row">
-              <a href="{{ url('/admin/products/create') }}" class="btn btn-primary btn-round">Nuevo producto</a>
+              <a href="{{ url('/admin/categories/create') }}" class="btn btn-primary btn-round">Nueva categoría</a>
 
               <!--tabla-->
               <table class="table">
                   <thead>
                       <tr>
-                          <th class="text-center"></th>
                           <th class="text-center">Nombre</th>
                           <th class="col-md-5 text-center">Descripción</th>
-                          <th class="text-center">Categoría</th>
-                          <th class="text-right">Precio</th>
+                          <th>Imagen</th>
                           <th class="text-right">Opciones</th>
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach ($products as $product)
+                      @foreach ($categories as $key => $category)
                           
                       <tr>
-                          <td class="text-center">{{$product->id}}</td>
-                          <td>{{ $product->name}}</td>
-                          <td>{{ $product->description}}</td>
-                          <td>{{ $product->category_name }}</td>
-                          <td class="text-right">&euro; {{ $product->price}}</td>
+                          <td>{{ $category->name}}</td>
+                          <td>{{ $category->description}}</td>
+                          <td>
+                            <img src="{{ $category->featured_image_url }}" height="50" alt="">
+                          </td>
                           <td class="td-actions text-right">
                               
-                              <form method="POST" action="{{ url('/admin/products/'.$product->id) }}">
+                              <form method="POST" action="{{ url('/admin/categories/'.$category->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <a href="{{ url('/products/'.$product->id) }}" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs" target="_blank">
+                                <a href="#" rel="tooltip" title="Ver categoría" class="btn btn-info btn-simple btn-xs">
                                   <i class="fa fa-info"></i>
                                 </a>
-                                <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar producto" class="btn btn-warning btn-simple btn-xs">
+                                <a href="{{ url('/admin/categories/'.$category->id.'/edit') }}" rel="tooltip" title="Editar categoría" class="btn btn-warning btn-simple btn-xs">
                                     <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="{{ url('/admin/products/'.$product->id.'/images') }}" rel="tooltip" title="Imágenes del producto" class="btn btn-info btn-simple btn-xs">
-                                  <i class="fa fa-image"></i>
                                 </a>
                                 <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
                                   <i class="fa fa-times"></i>
@@ -67,7 +62,7 @@
                   </tbody>
               </table>
 
-              {{ $products->links() }}
+              {{ $categories->links() }}
           </div>
         </div>
       </div>

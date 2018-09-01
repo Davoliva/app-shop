@@ -35,8 +35,8 @@
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <input id="email" type="email" placeholder="Email..." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
-                  name="email" value="{{ old('email') }}" required autofocus>
+                  <input id="username" type="text" placeholder="Nombre de usuario" class="form-control" 
+                  name="username" value="{{ old('username') }}" required autofocus>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -44,7 +44,7 @@
                       <i class="material-icons">lock_outline</i>
                     </span>
                   </div>
-                  <input id="password"  placeholder="Password..." type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                  <input id="password"  placeholder="Contraseña" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                     @if ($errors->has('password'))
                         <span class="invalid-feedback" role="alert">

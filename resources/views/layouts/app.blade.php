@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
         <link href="{{asset('css/material-kit.css?v=2.0.4')}}" rel="stylesheet" />
+        @yield('styles')
+
         
     </head>
     <body class="@yield('body-class')">
@@ -51,12 +53,13 @@
                                         <a class="dropdown-item" href="{{ url('/home') }}">Dashboard</a>
 
                                         @if (auth()->user()->admin)
+                                        <a class="dropdown-item" href="{{ url('/admin/categories') }}">Gestionar categorías</a>
                                         <a class="dropdown-item" href="{{ url('/admin/products') }}">Gestionar productos</a>
                                         @endif
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
-                                            {{ __('Desconectarse') }}
+                                            {{ __('Cerrar sesión') }}
                                         </a>
                             
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -103,6 +106,7 @@
             <script src="{{ asset('js/plugins/jquery.sharrre.js') }}" type="text/javascript"></script>
             <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
             <script src="{{ asset('js/material-kit.js?v=2.0.4') }}" type="text/javascript"></script>
+            @yield('scripts')
     </body>
 </html>
 
